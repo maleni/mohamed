@@ -43,5 +43,15 @@ Prelaunchr::Application.configure do
   # For mailer configs
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { :host => ENV['DEFAULT_MAILER_HOST'] }
+  config.action_mailer.default_url_options = {:host => 'localhost'}
+  ActionMailer::Base.smtp_settings =
+      {
+
+          :address => 'smtp.gmail.com',
+          :port => 587,
+          :domain => 'gmail.com', #you can also use google.com
+          :authentication => :plain,
+          :user_name => 'd.usmanazmat@gmail.com',
+          :password => 'pucitbns300usman48'
+      }
 end

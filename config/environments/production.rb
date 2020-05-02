@@ -5,7 +5,7 @@ Prelaunchr::Application.configure do
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
   config.eager_load = true
@@ -60,8 +60,21 @@ Prelaunchr::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.action_mailer.default_url_options = { :host => ENV['DEFAULT_MAILER_HOST'] }
 
+  ActionMailer::Base.perform_deliveries = true
+  ActionMailer::Base.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = {:host => 'https://harry-prelaunchr.herokuapp.com'}
+  ActionMailer::Base.smtp_settings =
+      {
+
+          :address => 'smtp.gmail.com',
+          :port => 587,
+          :domain => 'gmail.com', #you can also use google.com
+          :authentication => :plain,
+          :user_name => 'd.usmanazmat@gmail.com',
+          :password => 'pucitbns300usman48'
+      }
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
